@@ -12,9 +12,6 @@ describe('student routes', function() {
 
   beforeEach(function (done) {
     testUtilities.dropDatabase(done);
-    // drop db
-    // create db
-    // seed
   });
 
   afterEach(function (done) {
