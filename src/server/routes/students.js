@@ -14,4 +14,30 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/:id', function (req, res, next) {
+  Students.find({DBid: req.params.id}, function (err, response) {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({
+      status: 'success',
+      data: response
+    })
+  });
+});
+
+router.post('/new', function (req, res, next) {
+  Students.insert({
+
+  }, function (err, response) {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({
+      status: 'success',
+      data: response
+    })
+  });
+});
+
 module.exports = router;
