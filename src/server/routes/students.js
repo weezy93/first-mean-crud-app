@@ -40,14 +40,23 @@ router.put('/:id/update', function (req, res, next) {
   var option = req.body;
   Students.findByIdAndUpdate(student_id, option, {new:true}, function (err, student) {
     if (err) {
-      console.log(error);
+      return next(err);
     }
     res.status(200).json(student);
   });
 });
 
-router.get('/:id/delete', function (req, res, next) {
-  // findbyidandremove
+router.delete('/:id/delete', function (req, res, next) {
+  var student_id = req.params.id;
+  Students.findByIdAndRemove(student_id, function (err, student) {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({
+      status: 'success',
+      data: student
+    });
+  });
 });
 
 module.exports = router;
