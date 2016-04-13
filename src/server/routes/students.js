@@ -22,7 +22,7 @@ router.get('/:id', function (req, res, next) {
     res.status(200).json({
       status: 'success',
       data: response
-    })
+    });
   });
 });
 
@@ -33,6 +33,21 @@ router.post('/new', function (req, res, next) {
       res.status(200).json(student);
     });
   });
+});
+
+router.put('/:id/update', function (req, res, next) {
+  var student_id = req.params.id;
+  var option = req.body;
+  Students.findByIdAndUpdate(student_id, option, {new:true}, function (err, student) {
+    if (err) {
+      console.log(error);
+    }
+    res.status(200).json(student);
+  });
+});
+
+router.get('/:id/delete', function (req, res, next) {
+  // findbyidandremove
 });
 
 module.exports = router;

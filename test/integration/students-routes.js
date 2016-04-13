@@ -6,6 +6,7 @@ var server = require('../../src/server/app');
 var should = chai.should();
 var testUtilities = require('../utilities');
 var testSeed = require('../../src/server/models/seeds/test-seed');
+var Students = require('../../src/server/models/students');
 
 chai.use(chaiHttp);
 
@@ -84,7 +85,6 @@ describe('student routes', function() {
         year: 1997
       })
       .end(function (err, res) {
-        console.log(err, res.body);
         res.status.should.equal(200);
         res.type.should.equal('application/json');
         res.body.should.be.a('object');
@@ -103,31 +103,33 @@ describe('student routes', function() {
   // put
   describe('/PUT students', function () {
 
-    xit('should return all students', function(done) {
-      chai.request(server)
-      .get('/students')
-      .end(function (err, res) {
-        res.status.should.equal(200);
-        res.type.should.equal('application/json');
-        res.body.should.be.a('object');
-        res.body.should.have.property('status');
-        res.body.should.have.property('data');
-        res.body.data.should.be.a('array');
-        res.body.data.length.should.equal(1);
-        res.body.data[0].should.have.property('firstName');
-        res.body.data[0].should.have.property('lastName');
-        res.body.data[0].should.have.property('year');
-        res.body.data[0].firstName.should.equal('Kevin');
-        res.body.data[0].lastName.should.equal('Schwartz');
-        res.body.data[0].year.should.equal(2001);
-        done();
+      it('should update a single student', function(done) {
+      Students.findOne(function (err, student) {
+        var student_id = student._id;
+        chai.request(server)
+        .put('/students/' + student_id + '/update')
+        .send({ year: 2030 })
+        .end(function (err, res) {
+          res.status.should.equal(200);
+          res.type.should.equal('application/json');
+          res.body.should.be.a('object');
+          res.body.should.have.property('DBid')
+          res.body.should.have.property('firstName');
+          res.body.should.have.property('lastName');
+          res.body.should.have.property('year');
+          res.body.DBid.should.equal(1);
+          res.body.firstName.should.equal('Kevin');
+          res.body.lastName.should.equal('Schwartz');
+          res.body.year.should.equal(2030);
+          done();
+        });
       });
-    });
+    })
   });
   // delete
   describe('/DELETE students', function () {
 
-    xit('should return all students', function(done) {
+    xit('should delete a single student', function(done) {
       chai.request(server)
       .get('/students')
       .end(function (err, res) {
