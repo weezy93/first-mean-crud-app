@@ -27,16 +27,11 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/new', function (req, res, next) {
-  Students.insert({
-
-  }, function (err, response) {
-    if (err) {
-      return next(err);
-    }
-    res.status(200).json({
-      status: 'success',
-      data: response
-    })
+  var student = new Students(req.body);
+  student.save(function(err, saved) {
+    Students.findOne({DBid: 3}, function (err, student) {
+      res.status(200).json(student);
+    });
   });
 });
 

@@ -23,5 +23,6 @@ function runSeed(done) {
 }
 
 module.exports = {
-  runSeed
+  runSeed,
+  latestID
 }

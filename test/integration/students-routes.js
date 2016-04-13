@@ -74,23 +74,28 @@ describe('student routes', function() {
   // post
   describe('/POST students', function () {
 
-    xit('should return all students', function(done) {
+    it('should add one student', function(done) {
       chai.request(server)
-      .get('/students/new')
+      .post('/students/new')
+      .send({
+        DBid: ++testSeed.latestID,
+        firstName: 'Kirk',
+        lastName: 'Steele',
+        year: 1997
+      })
       .end(function (err, res) {
+        console.log(err, res.body);
         res.status.should.equal(200);
         res.type.should.equal('application/json');
         res.body.should.be.a('object');
-        res.body.should.have.property('status');
-        res.body.should.have.property('data');
-        res.body.data.should.be.a('array');
-        res.body.data.length.should.equal(1);
-        res.body.data[0].should.have.property('firstName');
-        res.body.data[0].should.have.property('lastName');
-        res.body.data[0].should.have.property('year');
-        res.body.data[0].firstName.should.equal('Kevin');
-        res.body.data[0].lastName.should.equal('Schwartz');
-        res.body.data[0].year.should.equal(2001);
+        res.body.should.have.property('DBid')
+        res.body.should.have.property('firstName');
+        res.body.should.have.property('lastName');
+        res.body.should.have.property('year');
+        res.body.DBid.should.equal(3);
+        res.body.firstName.should.equal('Kirk');
+        res.body.lastName.should.equal('Steele');
+        res.body.year.should.equal(1997);
         done();
       });
     });
