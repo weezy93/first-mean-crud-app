@@ -1,31 +1,46 @@
 angular.module('studentApp')
 .service('studentDataService', ['crudService',function (crudService) {
+
   return {
     getAllStudents: function () {
-      crudService.getAll('students')
+      return crudService.getAll('students')
       .then(function (students) {
-        console.log(students);
         return students;
+      });
+    },
+    addStudent: function (payload) {
+      crudService.addOne('students/new', payload)
+      .then(function (student) {
+        console.log(student);
+        return student;
       });
     }
   }
 }])
+
 .service('crudService', ['$http', function ($http) {
+
   return {
     getAll: function (resource) {
-      $http.get('/' + resource)
+      return $http.get('/' + resource)
       .then(function (results) {
         return results;
       })
       .catch(function (err) {
-        console.log(err);
+        return err;
       });
     },
-    getOne: function (resource) {
-      // return data;
+    getOne: function (resource, payload) {
+
     },
-    addOne: function () {
-      // add student
+    addOne: function (resource, payload) {
+      return $http.post('/' + resource, payload)
+      .then(function (res) {
+        return res;
+      })
+      .catch(function (err) {
+        return err;
+      });
     },
     deleteOne: function () {
       // delete Student;
