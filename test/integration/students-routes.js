@@ -17,13 +17,22 @@ describe('student routes', function() {
   afterEach(function (done) {
     testUtilities.dropDatabase(done);
   });
+  describe('/GET students', function () {
 
-    it('a basic test can be ran', function(done) {
-      function add(num1, num2) {
-        return num1 + num2;
-      }
-      add(1, 1).should.equal(2);
-      done();
+    it('should return all students', function(done) {
+      chai.request(server)
+      .get('/students')
+      .end(function (err, res) {
+        res.status.should.equal(200);
+        res.type.should.equal('application/json');
+        res.body.should.be.a('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('data');
+        res.body.data.should.be.a('array');
+        res.body.data.length.should.equal(0);
+        done();
+      });
     });
 
+  });
 });

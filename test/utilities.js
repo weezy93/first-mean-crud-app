@@ -9,6 +9,6 @@ function dropDatabase(done) {
 // drop, seed, create database goes here so code can be reused
 
 
-model.exports = {
+module.exports = {
   dropDatabase
 }

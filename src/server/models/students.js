@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Schema .mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var StudentSchema = new Schema ({
   firstName: { type: String, required: true },
@@ -9,4 +9,4 @@ var StudentSchema = new Schema ({
 
 var Student = mongoose.model('students', StudentSchema);
 
-module.exports = Artist;
+module.exports = Student;
