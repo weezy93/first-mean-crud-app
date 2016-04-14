@@ -1,13 +1,19 @@
 language: node_js
-
 node_js:
-  - "5"
-  - "4.1"
-  - "4.0"
-  - '0.12'
-  - '0.11'
-
+- '5'
+- '4.1'
+- '4.0'
+- '0.12'
+- '0.11'
 services: mongodb
-
 before_script:
-  - npm install -g mocha
+- npm install -g mocha
+deploy:
+  provider: heroku
+  api_key:
+    secure: D0kvEi4Acv/lR0Qy1pmaHp6paY+1vqxee4Dm+DRY5O4t0oJ4ekJWkHZHOpEiDnbHldpH4hBK+yJEi/JM54QaHiz47ExH46KGV/5fY/iTfVhmfiBhbCzZfgKAsr9Q7A4odEQB3YAfEogoiJ0A8wX2NQVzGAx+XD7yihFVQ8SbbD4ConGZrO1tRDpUno/zhaY4vMDPxa5jQooGT79JAUb0mkraz2FZaZMKW9V8aC7yTeGHSI0JQGboGqyYHkEMc6s3gqEnk6PTDg5IDZMxp4UjbVFnNnPPFJE9DeEOl9V9ddbLC0gcEa2Wn49SiE90OtYf8nOPM2GzZmds8hT/EN0GIaZ8sNsKflLzqbxFDtb4OAYIMVwLbtd1MinMa2V2TKw9mwBHHF9AFbGNvaeoeVcOfm3HpSSjlnaI70uun1UeCw5tNvD+zK6IlaBrsKqR0OE5DcFMkn2CTYj769QogMBSsi++zdibdgjIghKqbB8vrPjk3ZFioVzgOVZApFVih10JyHXzJGkEsylW7E0YQmdV3ihPoAZs3VXCnzPl5xNrDCbDrrczdd2I/WyfkkNa9OlvNvGDcKeI7CQO1m8A78UD6EbKaD0t0yfCO60zqd0qmxhyKOl9NEDyA4n8nRmWk/QZYVB4pwpdFpxhFwxXpmsTRoEwafPekSB7Hagn2DTyG4M=
+  app: hogwarts-mean-tdd
+  on:
+    branch: master
+    node: "5"
+    repo: weezy93/first-mean-crud-app
