@@ -7,11 +7,11 @@ a {
   color: #00B7FF;
 }
 
-.delete {
+input.delete {
   background-color: rgb(230, 14, 71);
   color: white;
 }
 
-.edit {
+input.edit {
   background-color: rgba(232, 198, 19, .7)
 }

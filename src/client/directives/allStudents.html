@@ -1,9 +1,10 @@
 <div class="container">
   <ul>
     <li ng-repeat="student in allStudents">{{ student.firstName }} {{ student.lastName }}, year: {{ student.year }}
-      <div class="">
-        <button type="button" class="button edit">edit</button>
-        <button type="button" class="button delete" ng-click="deleteStudent(student)">remove</button>
-      </div></li>
+      <div class="buttons">
+        <input type="button" class="button edit" value="edit" ng-click="editStudent(student)" />
+        <input type="button" class="button delete" ng-click="deleteStudent(student)" value="remove" />
+      </div>
+    </li>
   </ul>
 </div>
