@@ -21,6 +21,6 @@ angular.module('studentApp')
 
   $scope.deleteStudent = function (student) {
     studentDataService.deleteStudent(student)
-    console.log('delete');
+    $scope.updateStudents();
   }
 }]);
