@@ -8,12 +8,16 @@ angular.module('studentApp')
         return students;
       });
     },
+
     addStudent: function (payload) {
       crudService.addOne('students/new', payload)
       .then(function (student) {
-        console.log(student);
         return student;
       });
+    },
+
+    deletStudent: function () {
+      crudService.deleteOne()
     }
   }
 }])
