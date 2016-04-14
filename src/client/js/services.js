@@ -8,11 +8,22 @@ angular.module('studentApp')
         return students;
       });
     },
+
     addStudent: function (payload) {
       crudService.addOne('students/new', payload)
       .then(function (student) {
-        console.log(student);
         return student;
+      });
+    },
+
+    deleteStudent: function (student) {
+      crudService.deleteOne("students/" + student._id + "delete")
+      .then(function (student) {
+        console.log('here');
+        return student;
+      })
+      .catch(function (err) {
+        return err;
       });
     }
   }
@@ -42,8 +53,17 @@ angular.module('studentApp')
         return err;
       });
     },
-    deleteOne: function () {
-      // delete Student;
+    deleteOne: function (resource, payload) {
+      return $http.delete('/' + resource)
+      .then(function (res) {
+        return res;
+      })
+      .catch(function (err) {
+        return err;
+      });
+    },
+    updateOne: function (resource, payload) {
+      // update
     }
   }
 }]);
