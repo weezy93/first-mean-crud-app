@@ -8,6 +8,10 @@ a {
 }
 
 .delete {
-  background-color: rgb(154, 15, 52);
+  background-color: rgb(230, 14, 71);
   color: white;
+}
+
+.edit {
+  background-color: rgba(232, 198, 19, .7)
 }
