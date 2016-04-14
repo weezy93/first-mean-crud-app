@@ -17,13 +17,13 @@ angular.module('studentApp')
     },
 
     deleteStudent: function (student) {
-      console.log(student);
       crudService.deleteOne("students/" + student._id + "delete")
-      .then(function (student) {
+      .then(function () {
         console.log('here');
         return student;
       })
       .catch(function (err) {
+        console.log(err);
         return err;
       });
     }
@@ -54,9 +54,10 @@ angular.module('studentApp')
         return err;
       });
     },
-    deleteOne: function (resource, payload) {
+    deleteOne: function (resource) {
       return $http.delete('/' + resource)
       .then(function (res) {
+        console.log('res', res);
         return res;
       })
       .catch(function (err) {

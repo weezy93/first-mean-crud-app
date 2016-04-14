@@ -108,7 +108,7 @@ describe('student routes', function() {
           var student_id = student._id;
           chai.request(server)
           .put('/students/' + student_id + '/update')
-          .send({ year: 2030 })
+          .send({ year: 2030 }
           .end(function (err, res) {
             res.status.should.equal(200);
             res.type.should.equal('application/json');
