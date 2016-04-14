@@ -17,5 +17,10 @@ angular.module('studentApp')
     studentDataService.addStudent($scope.student);
     $scope.student = {};
     $scope.updateStudents();
+  };
+
+  $scope.deleteStudent = function (student) {
+    studentDataService.deleteStudent(student)
+    console.log('delete');
   }
 }]);
