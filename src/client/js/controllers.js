@@ -23,4 +23,18 @@ angular.module('studentApp')
     studentDataService.deleteStudent(student)
     $scope.updateStudents();
   }
+}])
+.controller('signUpController', ['$scope', function ($scope ) {
+  $scope.title = 'Register';
+  $scope.user = {};
+  $scope.register = function () {
+    console.log($scope.user);
+  };
+}])
+.controller('loginController', ['$scope', function ($scope) {
+  $scope.title = 'Log In';
+  $scope.user = {};
+  $scope.login = function () {
+    console.log($scope.user);
+  }
 }]);
