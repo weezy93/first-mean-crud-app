@@ -134,7 +134,7 @@ describe('student routes', function() {
       Students.findOne(function (err, student) {
         var student_id = student._id;
         chai.request(server)
-        .delete('/students/' + student_id + '/delete')
+        .delete('/students/delete/' + student_id)
         .end(function (err, res) {
           res.status.should.equal(200);
           res.type.should.equal('application/json');

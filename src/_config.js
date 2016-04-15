@@ -6,6 +6,13 @@ config.mongoURI = {
   production: process.env.MONGODB_URI
 }
 
-module.exports = config;
+// config.SALT_WORK_FACTOR = {
+//   test: 10,
+//   development: 10,
+//   production: 12
+// }
 
-// MONGODB_URI: mongodb://heroku_2g3tmv18:kqfc5rn6ff11ud106lbeg3alib@ds023540.mlab.com:23540/heroku_2g3tmv18
+config.SALT_WORK_FACTOR = 10;
+config.TOKEN_SECRET = 'soSuperS3cret#';
+
+module.exports = config;
