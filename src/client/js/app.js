@@ -1,1 +1,1 @@
-angular.module('studentApp', []);
+angular.module('studentApp', ['ngRoute']);

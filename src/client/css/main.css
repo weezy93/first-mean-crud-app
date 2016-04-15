@@ -8,10 +8,22 @@ a {
 }
 
 input.delete {
-  background-color: rgb(230, 14, 71);
+  background-color: rgb(129, 15, 15);
   color: white;
 }
 
 input.edit {
   background-color: rgba(232, 198, 19, .7)
+}
+
+button.button-primary {
+  background-color: rgb(16, 108, 42);
+}
+
+.buttons {
+  margin-top: 2rem;
+}
+
+ul {
+  list-style: none;
 }
