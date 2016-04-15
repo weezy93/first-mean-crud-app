@@ -3,6 +3,7 @@ angular.module('studentApp')
   $routeProvider
   .when('/', {
     templateUrl: '../partials/main.html',
+    controller: 'addStudentController'
   })
   .when('/register', {
     templateUrl: '../partials/signup.html',
