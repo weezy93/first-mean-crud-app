@@ -30,16 +30,17 @@ angular.module('studentApp')
   $scope.register = function () {
     authService.register($scope.user)
     .then(function (user) {
+      console.log(user);
       authService.setUserInfo(user);
       $location.path('/');
     })
     .catch(function (err) {
       // check status code, send appropriate message
-      console.log(err);
+      console.log('err', err);
     });
   };
 }])
-.controller('loginController', ['$scope', '$location' 'authService', function ($scope,  $location, authService) {
+.controller('loginController', ['$scope', '$location', 'authService', function ($scope,  $location, authService) {
   $scope.title = 'Log In';
   $scope.user = {};
   $scope.login = function () {
@@ -50,7 +51,7 @@ angular.module('studentApp')
     })
     .catch(function (err) {
       // check status code, send appropriate message
-      console.log(err);
+      console.log('err', err);
     });
   };
 }]);

@@ -24,6 +24,12 @@ button.button-primary {
   margin-top: 2rem;
 }
 
-ul {
-  list-style: none;
-}
+  /*all-students {
+    display: flex;
+    width: 100%;
+  }
+GRID
+  all-students > section {
+    width: 30%;
+    margin: auto;
+  }*/

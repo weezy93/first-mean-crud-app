@@ -1,17 +1,7 @@
-<div class="container">
-  <!-- <ul>
-    <li ng-repeat="student in allStudents">{{ student.firstName }} {{ student.lastName }}, year: {{ student.year }}
-      <div class="buttons">
-        <input type="button" class="button edit" value="edit" ng-click="editStudent(student)" />
-        <input type="button" class="button delete" ng-click="deleteStudent(student)" value="remove" />
-      </div>
-    </li>
-  </ul> -->
-  <div ng-repeat="student in allStudents" class="four columns">
-    <h6>{{ student.firstName }} {{ student.lastName }}, year: {{ student.year }}</h6>
-    <div class="buttons">
-      <input type="button" class="button edit" value="edit" ng-click="editStudent(student)" />
-      <input type="button" class="button delete" ng-click="deleteStudent(student)" value="remove" />
-    </div>
+<section ng-repeat="student in allStudents" class="four columns">
+  <h6>{{ student.firstName }} {{ student.lastName }}, year: {{ student.year }}</h6>
+  <div class="buttons">
+    <input type="button" class="button edit" value="edit" ng-click="editStudent(student)" />
+    <input type="button" class="button delete" ng-click="deleteStudent(student)" value="remove" />
   </div>
-</div>
+</section>

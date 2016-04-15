@@ -95,9 +95,9 @@ angular.module('studentApp')
       $window.localStorage.clear();
     },
     setUserInfo: function (userData) { // user object and token
-      // userData is what is sent from auth routes  
-      $window.localStorage.set('user', userData.data.user);
-      $window.localStorage.set('token', userData.data.token);
+      // userData is what is sent from auth routes
+      $window.localStorage.setItem('user', JSON.stringify(userData.data.data.user));
+      $window.localStorage.setItem('token', JSON.stringify(userData.data.data.token));
     },
     getUserInfo: function (userData) {
       $window.localStorage.get('user');

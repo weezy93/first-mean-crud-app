@@ -7,11 +7,11 @@ angular.module('studentApp')
   })
   .when('/register', {
     templateUrl: '../partials/signup.html',
-    controller: 'signUpController'
+    controller: 'signUpController',
   })
   .when('/login', {
     templateUrl: '../partials/login.html',
-    controller: 'loginController'
+    controller: 'loginController',
   })
   .when('/logout', {})
   .otherwise('/');
