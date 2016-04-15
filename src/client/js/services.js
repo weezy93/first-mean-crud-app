@@ -17,7 +17,7 @@ angular.module('studentApp')
     },
 
     deleteStudent: function (student) {
-      crudService.deleteOne("students/" + student._id + "delete")
+      crudService.deleteOne("students/delete/" + student._id)
       .then(function () {
         console.log('here');
         return student;
