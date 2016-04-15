@@ -41,7 +41,6 @@ describe('student routes', function() {
         res.body.data[0].firstName.should.equal('Kevin');
         res.body.data[0].lastName.should.equal('Schwartz');
         res.body.data[0].year.should.equal(2001);
-        res.body.data[1].DBid.should.equal(2);
         done();
       });
     });
@@ -51,23 +50,25 @@ describe('student routes', function() {
   describe('/GET-ONE students', function () {
 
     it('should return one student', function(done) {
-      chai.request(server)
-      .get('/students/1')
-      .end(function (err, res) {
-        res.status.should.equal(200);
-        res.type.should.equal('application/json');
-        res.body.should.be.a('object');
-        res.body.should.have.property('status');
-        res.body.should.have.property('data');
-        res.body.data.should.be.a('array');
-        res.body.data.length.should.equal(1);
-        res.body.data[0].should.have.property('firstName');
-        res.body.data[0].should.have.property('lastName');
-        res.body.data[0].should.have.property('year');
-        res.body.data[0].firstName.should.equal('Kevin');
-        res.body.data[0].lastName.should.equal('Schwartz');
-        res.body.data[0].year.should.equal(2001);
-        done();
+      Students.findOne(function (err, student) {
+          var student_id = student._id;
+        chai.request(server)
+        .get('/students/' + student_id)
+        .end(function (err, res) {
+          res.status.should.equal(200);
+          res.type.should.equal('application/json');
+          res.body.should.be.a('object');
+          res.body.should.have.property('status');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('firstName');
+          res.body.data.should.have.property('lastName');
+          res.body.data.should.have.property('year');
+          res.body.data.firstName.should.equal('Kevin');
+          res.body.data.lastName.should.equal('Schwartz');
+          res.body.data.year.should.equal(2001);
+          done();
+        });
       });
     });
   });
@@ -79,7 +80,6 @@ describe('student routes', function() {
       chai.request(server)
       .post('/students/new')
       .send({
-        DBid: ++testSeed.latestID,
         firstName: 'Kirk',
         lastName: 'Steele',
         year: 1997
@@ -88,11 +88,9 @@ describe('student routes', function() {
         res.status.should.equal(200);
         res.type.should.equal('application/json');
         res.body.should.be.a('object');
-        res.body.should.have.property('DBid')
         res.body.should.have.property('firstName');
         res.body.should.have.property('lastName');
         res.body.should.have.property('year');
-        res.body.DBid.should.equal(3);
         res.body.firstName.should.equal('Kirk');
         res.body.lastName.should.equal('Steele');
         res.body.year.should.equal(1997);
@@ -107,17 +105,15 @@ describe('student routes', function() {
         Students.findOne(function (err, student) {
           var student_id = student._id;
           chai.request(server)
-          .put('/students/' + student_id + '/update')
-          .send({ year: 2030 }
+          .put('/students/' + student_id)
+          .send({ year: 2030 })
           .end(function (err, res) {
             res.status.should.equal(200);
             res.type.should.equal('application/json');
             res.body.should.be.a('object');
-            res.body.should.have.property('DBid')
             res.body.should.have.property('firstName');
             res.body.should.have.property('lastName');
             res.body.should.have.property('year');
-            res.body.DBid.should.equal(1);
             res.body.firstName.should.equal('Kevin');
             res.body.lastName.should.equal('Schwartz');
             res.body.year.should.equal(2030);
@@ -134,13 +130,13 @@ describe('student routes', function() {
       Students.findOne(function (err, student) {
         var student_id = student._id;
         chai.request(server)
-        .delete('/students/delete/' + student_id)
+        .delete('/students/' + student_id)
         .end(function (err, res) {
+          console.log(res.body);
           res.status.should.equal(200);
           res.type.should.equal('application/json');
           res.body.should.be.a('object');
-          res.body.should.have.property('status');
-          res.body.should.have.property('data');
+          res.body._id.should.equal(student_id.toString());
           done();
         });
       });

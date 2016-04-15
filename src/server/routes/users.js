@@ -33,7 +33,7 @@ router.post('/register', function (req, res, next) {
   .catch(function (err) {
     return next(err);
   });
-
+});
 
   // ensure user doesn't exist
   // User.findOne({ email: req.body.email }, function (err, existingUser) {
@@ -60,7 +60,6 @@ router.post('/register', function (req, res, next) {
   //     }
   //   });
   // });
-});
 
 router.post('/login', function (req, res, next) {
   // ensure that user exists
@@ -71,7 +70,7 @@ router.post('/login', function (req, res, next) {
         status: 'fail',
         message: 'Email does not exist'
       });
-    } else {
+    } else
       user.comparePassword(req.body.password, function (err, match) {
         if (err) {
           return next(err);
@@ -82,25 +81,23 @@ router.post('/login', function (req, res, next) {
             message: 'Password is not correct' // handle differently on client side
           });
         }
-        user = user.toObject();
-        // delete user.password;
-        var token = generateToken(user);
-        res.status(200).json({
-          status: 'success',
-          data: {
-            token: token,
-            user: user.email
-        });
 
+      user = user.toObject();
+      // delete user.password;
+      var token = generateToken(user);
+      res.status(200).json({
+        status: 'success',
+        data: {
+          token: token,
+          user: user.email
+        }
       });
-    }
     // compare password with hashed password
+    })
   })
   .catch(function (err) {
     return next(err);
-  });;
-
-
+  });
 });
 
 router.get('/logout', function (req, res, next) {
@@ -108,9 +105,9 @@ router.get('/logout', function (req, res, next) {
 });
 
 function generateToken(user) {
-  var payload: {
+  var payload = {
     exp: moment().add(14, 'days').unix(),
-    iat: ,
+    init: moment().unix(),
     sub: user._id
   }
   return jwt.encode(payload, config.TOKEN_SECRET);
