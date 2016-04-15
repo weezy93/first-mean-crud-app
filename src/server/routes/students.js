@@ -37,17 +37,6 @@ router.post('/new', function (req, res, next) {
   });
 });
 
-// router.put('/:id', function (req, res, next) {
-//   var student_id = req.params.id;
-//   var option = req.body;
-//   Students.findByIdAndUpdate(student_id, option, {new:true}, function (err, student) {
-//     if (err) {
-//       return next(err);
-//     }
-//     res.status(200).json(student);
-//   });
-// });
-
 router.put('/:id', function (req, res, next) {
   var student_id = req.params.id;
   var option = req.body;
@@ -60,27 +49,11 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-// router.delete('/:id', function (req, res, next) {
-//   var student_id = req.params.id;
-//   Students.findByIdAndRemove(student_id, function (err, student) {
-//     if (err) {
-//       return next(err);
-//     }
-//     res.status(200).json({
-//       status: 'success',
-//       data: student
-//     });
-//   });
-// });
-
 router.delete('/:id', function (req, res, next) {
   var student_id = req.params.id;
   Students.findByIdAndRemove(student_id)
   .then(function (student) {
-    res.status(200).json({
-      status: 'success',
-      data: student
-    });
+    res.status(200).json(student);
   })
   .catch(function (err) {
     return next(err);

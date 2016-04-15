@@ -126,17 +126,17 @@ describe('student routes', function() {
   // delete
   describe('/DELETE students', function () {
 
-    xit('should delete a single student', function(done) {
+    it('should delete a single student', function(done) {
       Students.findOne(function (err, student) {
         var student_id = student._id;
         chai.request(server)
-        .delete('/students/delete/' + student_id)
+        .delete('/students/' + student_id)
         .end(function (err, res) {
+          console.log(res.body);
           res.status.should.equal(200);
           res.type.should.equal('application/json');
           res.body.should.be.a('object');
-          res.body.should.have.property('status');
-          res.body.should.have.property('data');
+          res.body._id.should.equal(student_id.toString());
           done();
         });
       });
