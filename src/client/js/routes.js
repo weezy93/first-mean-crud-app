@@ -13,8 +13,6 @@ angular.module('studentApp')
     templateUrl: '../partials/login.html',
     controller: 'loginController'
   })
-  .when('/logout', {
-
-  })
+  .when('/logout', {})
   .otherwise('/');
 });

@@ -68,4 +68,40 @@ angular.module('studentApp')
       // update
     }
   }
+}])
+/**
+1. login
+2. logout
+3. register
+4. set user info into localstorage
+5. get user info from localstorage
+
+**/
+.service('authService', ['$http', '$window', function ($http, $window) {
+  var user = {};
+  return {
+    // register user
+    register: function (user) {
+      return $http.post('/auth/register', user);
+    },
+    // login user
+    login: function (user) {
+      return $http.post('/auth/login', user);
+    },
+    // get user info
+    logout: function (user) {
+      user = null;
+      // clear local storage which holds jwt
+      $window.localStorage.clear();
+    },
+    setUserInfo: function (userData) { // user object and token
+      // userData is what is sent from auth routes  
+      $window.localStorage.set('user', userData.data.user);
+      $window.localStorage.set('token', userData.data.token);
+    },
+    getUserInfo: function (userData) {
+      $window.localStorage.get('user');
+    }
+
+  }
 }]);

@@ -24,17 +24,33 @@ angular.module('studentApp')
     $scope.updateStudents();
   }
 }])
-.controller('signUpController', ['$scope', function ($scope ) {
+.controller('signUpController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
   $scope.title = 'Register';
   $scope.user = {};
   $scope.register = function () {
-    console.log($scope.user);
+    authService.register($scope.user)
+    .then(function (user) {
+      authService.setUserInfo(user);
+      $location.path('/');
+    })
+    .catch(function (err) {
+      // check status code, send appropriate message
+      console.log(err);
+    });
   };
 }])
-.controller('loginController', ['$scope', function ($scope) {
+.controller('loginController', ['$scope', '$location' 'authService', function ($scope,  $location, authService) {
   $scope.title = 'Log In';
   $scope.user = {};
   $scope.login = function () {
-    console.log($scope.user);
-  }
+    authService.login($scope.user)
+    .then(function (user) {
+      authService.setUserInfo(user);
+      $location.path('/');
+    })
+    .catch(function (err) {
+      // check status code, send appropriate message
+      console.log(err);
+    });
+  };
 }]);
