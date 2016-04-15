@@ -21,7 +21,12 @@ angular.module('studentApp')
   })
   .when('/logout', {
     restricted: false,
-    preventLoggedIn: false
+    preventLoggedIn: false,
+    resolve: {
+      test: function (authService, $location) {
+      authService.logout();
+      $location.path('/login')
+    }}
   })
   .otherwise('/');
   $httpProvider.interceptors.push('authInterceptor');
