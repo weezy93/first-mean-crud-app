@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
   Students.findById(req.params.id)
   .then(function (student) {
-    // console.log(student);  
+    // console.log(student);
     res.status(200).json({
       status:'success',
       data: student
@@ -30,12 +30,10 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/new', function (req, res, next) {
-  new Student(req.body).save()
+  var student = new Students(req.body);
+  student.save()
   .then(function (student) {
-    res.status(200).json({
-      status: 'success',
-      data: student
-    });
+    res.status(200).json(student);
   });
 });
 

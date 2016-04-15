@@ -55,7 +55,6 @@ describe('student routes', function() {
         chai.request(server)
         .get('/students/' + student_id)
         .end(function (err, res) {
-          console.log('res', res.body);
           res.status.should.equal(200);
           res.type.should.equal('application/json');
           res.body.should.be.a('object');
@@ -77,7 +76,7 @@ describe('student routes', function() {
   // post
   describe('/POST students', function () {
 
-    xit('should add one student', function(done) {
+    it('should add one student', function(done) {
       chai.request(server)
       .post('/students/new')
       .send({
@@ -86,6 +85,7 @@ describe('student routes', function() {
         year: 1997
       })
       .end(function (err, res) {
+        console.log('res', res.body);
         res.status.should.equal(200);
         res.type.should.equal('application/json');
         res.body.should.be.a('object');
