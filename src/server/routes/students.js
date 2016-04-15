@@ -3,60 +3,92 @@ var router = express.Router();
 var Students = require('../models/students');
 
 router.get('/', function (req, res, next) {
-  Students.find({})
-  .then(function(student) {
-    if (err) {
-      return next(err);
-    }
+  Students.find()
+  .then(function(students) {
     res.status(200).json({
       status: 'success',
-      data: response
+      data: students
     });
+  })
+  .catch(function (err) {
+    return next(err);
   });
 });
 
 router.get('/:id', function (req, res, next) {
-  Students.find({DBid: req.params.id}, function (err, response) {
-    if (err) {
-      return next(err);
-    }
+  Students.findById(req.params.id)
+  .then(function (student) {
+    // console.log(student);  
     res.status(200).json({
-      status: 'success',
-      data: response
+      status:'success',
+      data: student
     });
+  })
+  .catch(function (err) {
+    return next(err);
   });
 });
 
 router.post('/new', function (req, res, next) {
-  var student = new Students(req.body);
-  student.save(function(err, saved) {
-    Students.findOne({DBid: 3}, function (err, student) {
-      res.status(200).json(student);
-    });
-  });
-});
-
-router.put('/:id/update', function (req, res, next) {
-  var student_id = req.params.id;
-  var option = req.body;
-  Students.findByIdAndUpdate(student_id, option, {new:true}, function (err, student) {
-    if (err) {
-      return next(err);
-    }
-    res.status(200).json(student);
-  });
-});
-
-router.delete('/:id/delete', function (req, res, next) {
-  var student_id = req.params.id;
-  Students.findByIdAndRemove(student_id, function (err, student) {
-    if (err) {
-      return next(err);
-    }
+  new Student(req.body).save()
+  .then(function (student) {
     res.status(200).json({
       status: 'success',
       data: student
     });
+  });
+});
+
+// router.put('/:id', function (req, res, next) {
+//   var student_id = req.params.id;
+//   var option = req.body;
+//   Students.findByIdAndUpdate(student_id, option, {new:true}, function (err, student) {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.status(200).json(student);
+//   });
+// });
+
+router.put('/:id', function (req, res, next) {
+  var student_id = req.params.id;
+  var option = req.body;
+  Students.findByIdAndUpdate(student_id, option, {new:true})
+  .then(function (student) {
+    res.status(200).json({
+      status: 'success',
+      data: student
+    });
+  })
+  .catch(function (err) {
+    return next(err);
+  });
+});
+
+// router.delete('/:id', function (req, res, next) {
+//   var student_id = req.params.id;
+//   Students.findByIdAndRemove(student_id, function (err, student) {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.status(200).json({
+//       status: 'success',
+//       data: student
+//     });
+//   });
+// });
+
+router.delete('/:id', function (req, res, next) {
+  var student_id = req.params.id;
+  Students.findByIdAndRemove(student_id)
+  .then(function (student) {
+    res.status(200).json({
+      status: 'success',
+      data: student
+    });
+  })
+  .catch(function (err) {
+    return next(err);
   });
 });
 
