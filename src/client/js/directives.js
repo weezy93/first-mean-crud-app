@@ -4,4 +4,10 @@ angular.module('studentApp')
     restrict: 'E',
     templateUrl: '../directives/allStudents.html',
   }
+})
+.directive('navigationBar', function () {
+  return {
+    restrict: 'E',
+    templateUrl: '../directives/navigationBar.html'
+  }
 });

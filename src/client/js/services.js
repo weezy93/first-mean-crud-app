@@ -104,4 +104,7 @@ angular.module('studentApp')
     }
 
   }
+}])
+.service('authInterceptor', ['$scope', function ($scope) {
+  
 }]);

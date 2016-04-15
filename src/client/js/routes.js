@@ -15,4 +15,5 @@ angular.module('studentApp')
   })
   .when('/logout', {})
   .otherwise('/');
+  $httpProvider.interceptors.push('authInterceptor');
 });
