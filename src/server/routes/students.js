@@ -3,7 +3,8 @@ var router = express.Router();
 var Students = require('../models/students');
 
 router.get('/', function (req, res, next) {
-  Students.find({}, function (err, response) {
+  Students.find({})
+  .then(function(student) {
     if (err) {
       return next(err);
     }
