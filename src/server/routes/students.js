@@ -53,10 +53,7 @@ router.put('/:id', function (req, res, next) {
   var option = req.body;
   Students.findByIdAndUpdate(student_id, option, {new:true})
   .then(function (student) {
-    res.status(200).json({
-      status: 'success',
-      data: student
-    });
+    res.status(200).json(student);
   })
   .catch(function (err) {
     return next(err);

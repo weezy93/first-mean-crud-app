@@ -85,7 +85,6 @@ describe('student routes', function() {
         year: 1997
       })
       .end(function (err, res) {
-        console.log('res', res.body);
         res.status.should.equal(200);
         res.type.should.equal('application/json');
         res.body.should.be.a('object');
@@ -102,11 +101,11 @@ describe('student routes', function() {
   // put
   describe('/PUT students', function () {
 
-      xit('should update a single student', function(done) {
+      it('should update a single student', function(done) {
         Students.findOne(function (err, student) {
           var student_id = student._id;
           chai.request(server)
-          .put('/students/' + student_id + '/update')
+          .put('/students/' + student_id)
           .send({ year: 2030 })
           .end(function (err, res) {
             res.status.should.equal(200);
